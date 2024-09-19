@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bạn có ghét tôi không?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Nền gradient đẹp */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            width: 300px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.9); /* Nền mờ trắng */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            position: absolute; /* Để nút có thể di chuyển */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #yesButton {
+            background-color: #e74c3c; /* Màu nền nút "Có" */
+        }
+
+        #noButton {
+            background-color: #2ecc71; /* Màu nền nút "Không" */
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Bạn có ghét tôi không?</h1>
+    <button id="yesButton">Có</button>
+    <button id="noButton">Không</button>
+</div>
+
+<script>
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const container = document.querySelector('.container');
+
+    function getRandomPosition() {
+        const containerRect = container.getBoundingClientRect();
+        const buttonRect = yesButton.getBoundingClientRect();
+        const maxX = containerRect.width - buttonRect.width;
+        const maxY = containerRect.height - buttonRect.height;
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+        return { x: randomX, y: randomY };
+    }
+
+    function moveYesButton() {
+        const { x, y } = getRandomPosition();
+        yesButton.style.left = `${x}px`;
+        yesButton.style.top = `${y}px`;
+    }
+
+    // Đặt vị trí ban đầu cho nút "Có"
+    moveYesButton();
+
+    // Di chuyển nút "Có" khi được nhấn
+    yesButton.addEventListener('click', moveYesButton);
+
+    // Thông báo khi nhấn nút "Không"
+    noButton.addEventListener('click', function() {
+        alert('cảm ơn đã chọn không🙂"máy bạn đã bị chúng tôi cài virus⚠️"!');
+    });
+</script>
+
+</body>
+</html>
